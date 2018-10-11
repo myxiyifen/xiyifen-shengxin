@@ -1,0 +1,32 @@
+{
+	"index.html": {
+		"resources": [
+			"xiyifen-chatlist.html"
+		],
+		"refer": [
+			"xiyifen-chatlist.html",
+			"xiyifen-contact.html",
+			"xiyifen-discover.html",
+			"xiyifen-me.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"login.html",
+			"index.html"
+		],
+		"resources": [
+			"login.html"
+		]
+	},
+	"xiyifen-me.html": {
+		"refer": [
+			"myface.html"
+		]
+	},
+	"myface.html": {
+		"refer": [
+			"plugin/v3.1.6/myface-uploader.html"
+		]
+	}
+}

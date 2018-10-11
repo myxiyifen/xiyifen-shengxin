@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="fontIcon/iconfont.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	
+      	mui.plusReady(function(){
+      		plus.navigator.setStatusBarStyle("light");
+      		plus.navigator.setStatusBarBackground("#C9394A");
+      	});
+    </script>
+</head>
+<body>
+	
+	<header class="mui-bar mui-bar-nav title">
+	    <h1 class="mui-title title-color" id="muxin_title"><b>慕信</b></h1>
+	</header>
+	
+	<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item mui-active" tabindex="0">
+	        <span class="mui-icon iconfont icon-fire"></span>
+	        <span class="mui-tab-label">慕信</span>
+	    </a>
+	    <a class="mui-tab-item" tabindex="1">
+	        <span class="mui-icon iconfont icon-tongxunlu1"></span>
+	        <span class="mui-tab-label">通讯录</span>
+	    </a>
+	    <a class="mui-tab-item" tabindex="2">
+	        <span class="mui-icon iconfont icon-zhinanzhen"></span>
+	        <span class="mui-tab-label">发现</span>
+	    </a>
+	    <a class="mui-tab-item" tabindex="3">
+	        <span class="mui-icon iconfont icon-iconfontzhizuobiaozhun023104"></span>
+	        <span class="mui-tab-label">我</span>
+	    </a>
+	</nav>
+	    <!--<a class="mui-tab-item mui-active">
+	        <span class="mui-icon mui-icon-home"></span>
+	        <span class="mui-tab-label">首页</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-phone"></span>
+	        <span class="mui-tab-label">电话</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-email"></span>
+	        <span class="mui-tab-label">邮件</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-gear"></span>
+	        <span class="mui-tab-label">设置</span>
+	    </a>
+	</nav>-->
+	
+	<script type="text/javascript">
+		var muxinArray = [
+			{
+				pageId: "xiyifen-chatlist.html",
+				pageUrl: "xiyifen-chatlist.html"
+			},
+			{
+				pageId: "xiyifen-contact.html",
+				pageUrl: "xiyifen-contact.html"
+			},
+			{
+				pageId: "xiyifen-discover.html",
+				pageUrl: "xiyifen-discover.html"
+			},
+			{
+				pageId: "xiyifen-me.html",
+				pageUrl: "xiyifen-me.html"
+			}
+		];
+		
+		var muxinStyle = {
+		top: "44px",
+		bottom: "50px"
+		}
+		
+		mui.plusReady(function(){
+			mui.back=function(){
+				return false;
+			}
+			var indexWebview = plus.webview.currentWebview();
+			
+			for (var i=0;i<muxinArray.length;i++){
+				var muxinPage = 
+				plus.webview.create(muxinArray[i].pageUrl,
+									muxinArray[i].pageId,
+									muxinStyle);
+				
+				muxinPage.hide();
+				indexWebview.append(muxinPage);
+			}
+			plus.webview.show(muxinArray[0].pageId);
+			
+			mui(".mui-bar-tab").on("tap","a",function(){
+				var tabindex = this.getAttribute("tabindex");
+				plus.webview.show(muxinArray[tabindex].pageId,"fade-in",200)
+				for (var i=0;i<muxinArray.length;i++){
+					if(i != tabindex){
+						plus.webview.hide(muxinArray[i].pageId, "fade-out", 200);
+					}	
+				}
+			});
+		})
+	</script>
+	
+	
+</body>
+</html>
